@@ -1,17 +1,17 @@
 
 
  
-<ul class="food-genre">
-    <li class="food-nav">
-        <a class="" >Fruit</a>
-    </li>
-    <li class="food-nav">
-        <a class="" >Veg</a>
-    </li>
-    <li class="food-nav">
-        <a class="" >Mushrooms</a>
-    </li>
-</ul>
+<div class="food-genre">
+    <label class="food-nav">
+        <label class="" >Fruit</label>
+    </label>
+    <label class="food-nav">
+        <label class="" >Veg</label>
+    </label>
+    <label class="food-nav">
+        <label class="" >Mushrooms</label>
+    </label>
+</div>
             
 <?php if (! empty($foods) && is_array($foods)): ?>
     <table class="table table-striped table-bordered mt-4">
