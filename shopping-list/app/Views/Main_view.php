@@ -17,7 +17,7 @@
     <br>
     <!-- <p>Click the button to create a basket/list.  Then proceed to picking whatever foods you enjoy!</p> -->
 
-    <p>A basket has already been created for you. But if you want to reset, click the delete button on the list page.</p>
+    <p>You can create a basic by going to the shopping list page and clicking the '+' . But if you want to reset, click the delete button on the list page.</p>
 </section>
 
 <!-- Main part.. -->

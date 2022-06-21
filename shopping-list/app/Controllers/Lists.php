@@ -47,10 +47,10 @@ class Lists extends BaseController
 
             $model->createList();
 
-            return redirect();
+            return redirect()->to('public/list');
         }else{
             echo 'You already have a list..';
-            return redirect('index');
+            return redirect()->to('public/list');
         }
     }
 

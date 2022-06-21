@@ -26,6 +26,11 @@ class Foods extends BaseController
 
     public function create()
     {
+        if ( ! session_id() ) @ session_start();
+        if(isset($_SESSION['ListID'])){
+            // return redirect()->to('lists');
+        }
+
         $model = model(Shopping_model::class);
 
         if ($this->request->getMethod() === 'post' && $this->validate([

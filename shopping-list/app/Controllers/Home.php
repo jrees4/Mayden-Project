@@ -13,7 +13,9 @@ class Home extends BaseController
         if ( ! session_id() ) @ session_start();
 
         // remove basket id
-        // session_destroy();
+        session_destroy();
+
+        // $list = controller(Lists::class);
 
         //  Could make this a global tbh.
         $model = model(Shopping_model::class);
