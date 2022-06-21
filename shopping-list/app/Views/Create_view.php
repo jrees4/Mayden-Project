@@ -3,7 +3,7 @@
 <?= session()->getFlashdata('error') ?>
 <?= service('validation')->listErrors() ?>
 
-<form action="/foods/create" method="post">
+<form action="create" method="post">
     <?= csrf_field() ?>
 
     <div class="mt-3">

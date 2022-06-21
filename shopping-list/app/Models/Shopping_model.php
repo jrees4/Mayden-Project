@@ -10,18 +10,20 @@ class FoodsModel {
     function __construct() {
         $connection = new DatabaseConnector();
         $database = $connection->getDatabase();
-        $this->collection = $database->books;
+        $this->collection = $database->foods;
     }
 
+    // Foods
+    // ＼（〇_ｏ）／
     // Basic Gets
-    function get($limit = 50) {
+    function getfoods($limit = 50) {
         try {
             $cursor = $this->collection->find([], ['limit' => $limit]);
-            $books = $cursor->toArray();
+            $foods = $cursor->toArray();
 
-            return $books;
+            return $foods;
         } catch(\MongoDB\Exception\RuntimeException $ex) {
-            show_error('Error while fetching foodss: ' . $ex->getMessage(), 500);
+            show_error('Error while fetching foods: ' . $ex->getMessage(), 500);
         }
     }
 
@@ -54,7 +56,8 @@ class FoodsModel {
         }
     }
 
-    // Update
+    // Update 
+    // Not sure this is neccessary for foods... probably best to make it for the list itself, however. IT can't hurt to future proof.
     function updateFood($id, $name, $cost, $description) {
         try {
             $result = $this->collection->updateOne(
@@ -91,5 +94,17 @@ class FoodsModel {
         }
     }
 
-    // Not sure this is neccessary for foods... probably best to make it for the list itself, however. IT can't hurt to future proof.
+    // List
+    // (⊙_⊙)？
+    function getList(){
+
+    }
+
+    function createList(){
+
+    }
+
+    function emailList(){
+
+    }
 }
