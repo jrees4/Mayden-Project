@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", function(){
     //dom is fully loaded, but maybe waiting on images & css files
     console.log('loaded');
+    Main.init();
 });
 
 var Main = {
@@ -16,6 +17,27 @@ var Main = {
             var menuItem = menuItems[i];
             menuItem.classList.toggle("hidden");
         }
+    }
+}
+
+var Food = {
+    "init":function(){
+        // This is the old way to do XHR. Jquery has this built in..
+        var XHR = new XMLHttpRequest();
+        XHR.onreadystatechange = function() {
+            if (XHR.readyState === 4){
+                document.getElementById('result').innerHTML = XHR.responseText;
+            }
+        };
+
+        var elems = document.getElementsByClassName('af');
+        for (let i = 0; i < elems.length; i++) {
+            elems[i].addEventListener('click', Food.addFood);
+        }
+
+    },
+    "addFood":function(){
+        console.log(this.getAttribute('data-id'));
     }
 }
 

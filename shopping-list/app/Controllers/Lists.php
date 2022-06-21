@@ -20,11 +20,13 @@ class Lists extends BaseController
         ];
 
         if(isset($_SESSION['ListID'])){
-             $id = $_SESSION['ListID'];
-
-             $data = [
-                'listID' => $model->getList($id),
+            $id = $_SESSION['ListID'];
+            $listData = $model->getList($id);
+             
+            $data = [
+                'listID' => $listData['_id'],
                 'testID' => $_SESSION['ListID'],
+                'foodIDs' => $listData['foodIDs'],
             ];
     
         }else{
@@ -42,7 +44,7 @@ class Lists extends BaseController
         if(!isset($_SESSION['ListID'])){
             $model = model(Shopping_model::class);
 
-            $_SESSION['ListID'] = $model->createList();
+            $model->createList();
 
             return redirect();
         }else{

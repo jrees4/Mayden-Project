@@ -97,12 +97,14 @@ class FoodsModel {
 
     // List
     // (⊙_⊙)？
-    function getList(){
+    function getList($id){
         // Get the food items on the list
         try{
              $result = $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
-        } catch(){
 
+             return $result;
+        } catch(\MongoDB\Exception\RuntimeException $ex){
+            show_error('Error while fetching list with ID: ' . $id . $ex->getMessage(), 500);
         }
        
 
@@ -110,8 +112,10 @@ class FoodsModel {
 
     function createList(){
         try{
+            // Have a default food item in the list.
             $newID = $this->listCollection->insertOne([
                 'date' => date('Y-m-d'),
+                'foodIDs' => '62b1d2abf523f74e3509d316',
             ]);
 
             if($newID->getInsertedCount() == 1) {
@@ -140,8 +144,7 @@ class FoodsModel {
             $result = $this->collection->updateOne(
                 ['_id' => new \MongoDB\BSON\ObjectId($id)],
                 ['$set' => [
-                    'foodIDs' => ' $listedFoods ,'.$foodID,
-                   
+                    'foodIDs' =>  ''.$listedFoods.' , '.$foodID,
                 ]]
             );
 
@@ -156,7 +159,6 @@ class FoodsModel {
     }
 
     function emailList(){
-
-        // Use a library to make an email to send.
+        // Use a php library to make an email to send.
     }
 }

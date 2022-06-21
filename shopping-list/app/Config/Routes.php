@@ -36,6 +36,8 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// These redirects seem to break everything ;-;
 $routes->get('/', 'Home::index');
 $routes->get('home', 'Home::index');
 // $routes->addRedirect('/', 'Home::index');

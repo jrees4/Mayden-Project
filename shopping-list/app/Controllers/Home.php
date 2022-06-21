@@ -12,18 +12,22 @@ class Home extends BaseController
     {
         if ( ! session_id() ) @ session_start();
 
+        session_destroy();
+
         //  Could make this a global tbh.
         $model = model(Shopping_model::class);
         $id = false;
 
         if(isset($_SESSION['ListID'])){
             $id = $_SESSION['ListID'];
+            
+            $data = [
+                'listID' => $model->getList($id),
+            ];
         }
         
 
-        $data = [
-            'listID' => $model->getList($id),
-        ];
+       
 
         return view('Header_view')
         . view('Main_view')
