@@ -143,12 +143,16 @@ class FoodsModel {
             $id = $_SESSION['ListID'];
 
             // get the current food in the list.
-            $listedFoods = $this->getList();
+            $listedFoods = $this->getList($id);
+
+            $foodID = $this->input->post('foodID');
+
+            $listedFoods['FoodIDs'][] = $foodID;
 
             $result = $this->listCollection->updateOne(
                 ['_id' => new \MongoDB\BSON\ObjectId($id)],
                 ['$set' => [
-                    'foodIDs' =>  ''.$listedFoods.' , '.$foodID.'',
+                    'foodIDs' =>  $listedFoods,
                 ]]
             );
 
@@ -159,7 +163,7 @@ class FoodsModel {
 
             return false;
         } catch(\MongoDB\Exception\RuntimeException $ex) {
-            show_error('Error while adding a food to a list: ' . $id . $ex->getMessage(), 500);
+            show_error('Error while adding a food to a list: ' . $ex->getMessage(), 500);
         }
     }
 

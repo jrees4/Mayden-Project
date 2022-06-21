@@ -54,6 +54,7 @@ $routes->match(['get', 'post'], 'listcreate', 'Lists::create');
 
 $routes->get('list/(:segment)', 'Lists::delete/$1');
 $routes->post('foodAdd', 'Lists::foodAdd');
+$routes->post('public/foodAdd', 'Lists::foodAdd');
 $routes->addRedirect('index/create', 'food');
 
 

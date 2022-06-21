@@ -58,7 +58,7 @@ class Filters extends BaseConfig
      * @var array
      */
     public $methods = [
-            'post' => ['csrf'], // stops cross site forgery
+            // 'post' => ['csrf'], // stops cross site forgery
     ];
 
     /**

@@ -11,6 +11,8 @@
         <link rel="stylesheet" type = "text/css" href = "../assets/css/main.css"> 
 
         <script type="text/javascript" src="../assets/js/main.js"></script>
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <script>
             var d = '<?= site_url();?>';

@@ -42,13 +42,30 @@ var Food = {
     "addFood":function(){
         console.log(this.getAttribute('data-id'));
         // base_url 
-        // console.log(d);
+        console.log(d + 'public/foodAdd');
 
-        var FD = new FormData();
-        FD.append('foodID', this.getAttribute('data-id'));
-        // FD.append('listID', listID);
-        Food.XHR.open('POST', d + 'public/foodAdd', true);
-        Food.XHR.send(FD);
+        // var FD = new FormData();
+        // FD.append('foodID', this.getAttribute('data-id'));
+        // // FD.append('listID', listID);
+        // Food.XHR.open('POST', d + 'public/foodAdd', true);
+        // Food.XHR.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        // Food.XHR.send(FD);
+
+        var foodid = this.getAttribute('data-id')
+
+        $.ajax({
+            method: "post",
+            url: d + 'public/foodAdd',
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            data: {
+                'foodID': foodid,
+            },
+            success: function (response) {
+                console.log(response);
+            }
+        });
+
+        console.log('done');
     }
 }
 
