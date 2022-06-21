@@ -98,13 +98,17 @@ class FoodsModel {
     // (⊙_⊙)？
     function getList(){
 
+        // Get the food items on the list
     }
 
     function createList(){
 
+        // Return id for holding in the session
+        return; 
     }
 
     function emailList(){
 
+        // Use a library to make an email to send.
     }
 }

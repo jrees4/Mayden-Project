@@ -24,10 +24,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="list">Shopping List</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="food">Foods</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="list">Shopping List</a>
                     </li>
                 </ul>
             </div>

@@ -1,7 +1,7 @@
 
 
  
-<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<ul class="food-genre">
     <li class="food-nav">
         <a class="" >Fruit</a>
     </li>
@@ -23,9 +23,11 @@
                 </tr>
             </thead>
             <tbody>
-            <?php foreach($foods as $foods):?>
-                <tr>
-                    <td><label for="">aaa</label></td>
+            <?php foreach($foods as $f):?>
+                <tr data-id="<?=$f['_id']?>">
+                    <td><label for=""><?=$f['foodName']?></label></td>
+                    <td><label for=""><?=$f['cost']?></label></td>
+                    <td><label for=""><?=$f['description']?></label></td>
                 </tr>
             <?php endforeach ?>
             </tbody>
