@@ -11,6 +11,7 @@ class Foods extends BaseController
 {
     public function index()
     {
+        if ( ! session_id() ) @ session_start();
         $model = model(Shopping_model::class);
         // $model = $this->load->model('Shopping_model');
 
@@ -38,7 +39,7 @@ class Foods extends BaseController
                 $this->request->getPost('description'),
             );
 
-            return redirect();
+            return redirect()->to('food');
         } else {
             echo view('Header_view');
             echo view('Create_view', ['title' => 'Add a new food']);
@@ -52,6 +53,6 @@ class Foods extends BaseController
             $model->deleteFood($segment);
         }
 
-        return redirect()->to('foods');
+        return redirect()->to('food');
     }
 }

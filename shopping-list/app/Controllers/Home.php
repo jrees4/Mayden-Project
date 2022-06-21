@@ -10,10 +10,16 @@ class Home extends BaseController
 {
     public function index()
     {
+        if ( ! session_id() ) @ session_start();
+
         //  Could make this a global tbh.
         $model = model(Shopping_model::class);
+        $id = false;
 
-        $id = $_SESSION['ListID'];
+        if(isset($_SESSION['ListID'])){
+            $id = $_SESSION['ListID'];
+        }
+        
 
         $data = [
             'listID' => $model->getList($id),

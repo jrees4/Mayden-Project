@@ -11,6 +11,7 @@ class FoodsModel {
         $connection = new DatabaseConnector();
         $database = $connection->getDatabase();
         $this->collection = $database->foods;
+        $this->listCollection = $database->lists;
     }
 
     // Foods
@@ -29,9 +30,9 @@ class FoodsModel {
 
     function getSingle($id) {
         try {
-            $book = $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+            $food = $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
 
-            return $book;
+            return $food;
         } catch(\MongoDB\Exception\RuntimeException $ex) {
             show_error('Error while fetching food with ID: ' . $id . $ex->getMessage(), 500);
         }
@@ -97,14 +98,61 @@ class FoodsModel {
     // List
     // (⊙_⊙)？
     function getList(){
-
         // Get the food items on the list
+        try{
+             $result = $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+        } catch(){
+
+        }
+       
+
     }
 
     function createList(){
+        try{
+            $newID = $this->listCollection->insertOne([
+                'date' => date('Y-m-d'),
+            ]);
+
+            if($newID->getInsertedCount() == 1) {
+                $newID = (string) $newID->getInsertedId();;
+                // Make sure session is started/open
+                if ( ! session_id() ) @ session_start();
+                $_SESSION['ListID'] = $newID;
+                return true;
+            }
+
+            return false;
+
+        } catch(\MongoDB\Exception\RuntimeException $ex){
+            show_error('Failed to create list  - '.  $ex->getMessage(), 500);
+        }
 
         // Return id for holding in the session
         return; 
+    }
+
+    // Add food to list
+    function foodAdd($id, $foodID){
+        try {
+            // get the current food in the list.
+            $listedFoods = $this->getList($id);
+            $result = $this->collection->updateOne(
+                ['_id' => new \MongoDB\BSON\ObjectId($id)],
+                ['$set' => [
+                    'foodIDs' => ' $listedFoods ,'.$foodID,
+                   
+                ]]
+            );
+
+            if($result->getModifiedCount()) {
+                return true;
+            }
+
+            return false;
+        } catch(\MongoDB\Exception\RuntimeException $ex) {
+            show_error('Error while updating a food with ID: ' . $id . $ex->getMessage(), 500);
+        }
     }
 
     function emailList(){

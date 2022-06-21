@@ -1,5 +1,7 @@
 </div>
 
+    <div class="paddingTop"></div>
+
     <footer class="text-center">
     <div class="">
         <small>Page rendered in {elapsed_time} seconds</small>

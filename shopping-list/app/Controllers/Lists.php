@@ -7,42 +7,47 @@ helper('inflector');
 use App\Models\Shopping_model;
 use CodeIgniter\Model;
 
-class Foods extends BaseController
+class Lists extends BaseController
 {
     public function index()
     {
+        if ( ! session_id() ) @ session_start();
         $model = model(Shopping_model::class);
         // $model = $this->load->model('Shopping_model');
 
         $data = [
-            'foods' => $model->getList(),
+            'test' => 'Test123',
         ];
 
+        if(isset($_SESSION['ListID'])){
+             $id = $_SESSION['ListID'];
+
+             $data = [
+                'listID' => $model->getList($id),
+                'testID' => $_SESSION['ListID'],
+            ];
+    
+        }else{
+            $this->create();
+        }
+        
         echo view('Header_view', $data);
-        echo view('FoodPicker_view', $data);
+        echo view('List_view', $data);
         echo view('Footer_view', $data);
     }
 
     public function create()
     {
-        $model = model(Shopping_model::class);
+        if ( ! session_id() ) @ session_start();
+        if(!isset($_SESSION['ListID'])){
+            $model = model(Shopping_model::class);
 
-        if ($this->request->getMethod() === 'post' && $this->validate([
-            'name' => 'required|min_length[1]|max_length[255]',
-            'cost' => 'required|is_natural_no_zero',
-            'description' => 'required|min_length[0]|max_length[255]',
-        ])) {
-            $model->insertFood(
-                $this->request->getPost('name'),
-                $this->request->getPost('cost'),
-                $this->request->getPost('description'),
-            );
+            $_SESSION['ListID'] = $model->createList();
 
             return redirect();
-        } else {
-            echo view('Header_view');
-            echo view('Create_view', ['title' => 'Add a new food']);
-            echo view('Footer_view');
+        }else{
+            echo 'You already have a list..';
+            return redirect('index');
         }
     }
 
@@ -52,6 +57,6 @@ class Foods extends BaseController
             $model->deleteFood($segment);
         }
 
-        return redirect()->to('foods');
+        return redirect()->to('Home');
     }
 }

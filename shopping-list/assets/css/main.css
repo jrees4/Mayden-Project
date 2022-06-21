@@ -180,8 +180,28 @@ footer .copyrights {
     }
 }
 
+.paddingTop{
+    padding-top: 5vh;
+    margin-top: 5vh;
+}
+
 .food-genre{
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-around;
+}
+
+.start{
+    background-color: #008CBA;
+    border-radius: 50%;
+    min-height: 50px;
+    min-width: 50px;
+}
+
+.flex{
+    display: flex;
+}
+
+.justifyCenter{
+    justify-content: center;
 }

@@ -38,12 +38,18 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('home', 'Home::index');
+// $routes->addRedirect('/', 'Home::index');
 // Food list
 $routes->get('food', 'Foods::index');
 $routes->match(['get', 'post'], 'create', 'Foods::create');
-$routes->addRedirect('/', 'food');
+// $routes->addRedirect('food', 'Foods::index');
 // Basket/List
 $routes->get('list', 'Lists::index');
+$routes->match(['get', 'post'], 'listcreate', 'Lists::create');
+// $routes->addRedirect('lists', 'Lists::index');
+
+$routes->get('list/(:segment)', 'Lists::delete/$1');
+
 
 /*
  * --------------------------------------------------------------------
