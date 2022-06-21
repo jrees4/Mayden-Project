@@ -10,6 +10,13 @@
 
         <link rel="stylesheet" type = "text/css" href = "../assets/css/main.css"> 
 
+        <script type="text/javascript" src="../assets/js/main.js"></script>
+
+        <script>
+            var d = '<?= site_url();?>';
+        </script>
+
+
         <title>Shopping List</title>
 
        

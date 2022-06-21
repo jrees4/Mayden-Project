@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             <?php foreach($foods as $f):?>
-                <tr data-id="<?=$f['_id']?>">
+                <tr data-id="<?=$f['_id']?>" class="af">
                     <td><label for=""><?=$f['foodName']?></label></td>
                     <td><label for=""><?=$f['cost']?></label></td>
                     <td><label for=""><?=$f['description']?></label></td>

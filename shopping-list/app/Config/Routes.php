@@ -37,10 +37,12 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-// These redirects seem to break everything ;-;
+// These redirects seem to break everything ;-; by parsing %5 into the url.
 $routes->get('/', 'Home::index');
+
 $routes->get('home', 'Home::index');
-// $routes->addRedirect('/', 'Home::index');
+// $routes->get('index', 'Home::index');
+
 // Food list
 $routes->get('food', 'Foods::index');
 $routes->match(['get', 'post'], 'create', 'Foods::create');
@@ -51,6 +53,8 @@ $routes->match(['get', 'post'], 'listcreate', 'Lists::create');
 // $routes->addRedirect('lists', 'Lists::index');
 
 $routes->get('list/(:segment)', 'Lists::delete/$1');
+
+// $routes->addRedirect('/', 'food');
 
 
 /*

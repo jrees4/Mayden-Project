@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function(){
     //dom is fully loaded, but maybe waiting on images & css files
     console.log('loaded');
     Main.init();
+    Food.init();
 });
 
 var Main = {
@@ -38,6 +39,15 @@ var Food = {
     },
     "addFood":function(){
         console.log(this.getAttribute('data-id'));
+        // base_url 
+        // console.log(d);
+        // 
+
+
+        var FD = new FormData();
+        FD.append('foodID', this.getAttribute('data-id'));
+        XHR.open('post', d + 'list/foodAdd');
+        XHR.send(FD);
     }
 }
 

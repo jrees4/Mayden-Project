@@ -100,8 +100,7 @@ class FoodsModel {
     function getList($id){
         // Get the food items on the list
         try{
-             $result = $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
-
+             $result = $this->listCollection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
              return $result;
         } catch(\MongoDB\Exception\RuntimeException $ex){
             show_error('Error while fetching list with ID: ' . $id . $ex->getMessage(), 500);
@@ -137,8 +136,14 @@ class FoodsModel {
     }
 
     // Add food to list
-    function foodAdd($id, $foodID){
+    function foodAdd(){
         try {
+            // Get inputs from JS
+            $foodID = $this->input->post('foodID');
+
+            // We don't have to parse the list ID because it's in the session cookies
+            $id = $_SESSION['ListID'];
+            
             // get the current food in the list.
             $listedFoods = $this->getList($id);
             $result = $this->collection->updateOne(
@@ -154,7 +159,7 @@ class FoodsModel {
 
             return false;
         } catch(\MongoDB\Exception\RuntimeException $ex) {
-            show_error('Error while updating a food with ID: ' . $id . $ex->getMessage(), 500);
+            show_error('Error while adding a food to a list: ' . $id . $ex->getMessage(), 500);
         }
     }
 

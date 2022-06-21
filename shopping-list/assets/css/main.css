@@ -205,3 +205,7 @@ footer .copyrights {
 .justifyCenter{
     justify-content: center;
 }
+
+.af:hover{
+    background-color: rgba(89, 130, 224, 0.8);
+}

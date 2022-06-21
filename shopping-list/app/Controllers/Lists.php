@@ -24,13 +24,14 @@ class Lists extends BaseController
             $listData = $model->getList($id);
              
             $data = [
-                'listID' => $listData['_id'],
+                // 'listID' => $listData['_id'],
                 'testID' => $_SESSION['ListID'],
-                'foodIDs' => $listData['foodIDs'],
+                'listData' => $listData['foodIDs'],
             ];
     
         }else{
             $this->create();
+            $this->index();
         }
         
         echo view('Header_view', $data);
@@ -51,6 +52,10 @@ class Lists extends BaseController
             echo 'You already have a list..';
             return redirect('index');
         }
+    }
+
+    public function foodAdd(){
+        $this->model->foodAdd();
     }
 
     public function delete($segment = null) {

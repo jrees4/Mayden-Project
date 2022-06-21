@@ -12,7 +12,8 @@ class Home extends BaseController
     {
         if ( ! session_id() ) @ session_start();
 
-        session_destroy();
+        // remove basket id
+        // session_destroy();
 
         //  Could make this a global tbh.
         $model = model(Shopping_model::class);
@@ -25,9 +26,6 @@ class Home extends BaseController
                 'listID' => $model->getList($id),
             ];
         }
-        
-
-       
 
         return view('Header_view')
         . view('Main_view')
