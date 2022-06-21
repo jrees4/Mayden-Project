@@ -30,7 +30,7 @@ class Lists extends BaseController
             ];
     
         }else{
-            $this->create();
+            // $this->create();
             $this->index();
         }
         
@@ -54,8 +54,21 @@ class Lists extends BaseController
         }
     }
 
+    // this whole thing is broken. aaaaaaaa
     public function foodAdd(){
-        $this->model->foodAdd();
+        if ( ! session_id() ) @ session_start();
+         
+        //  // We don't have to parse the list ID because it's in the session cookies
+        //  $id = $_SESSION['ListID'];
+        //  echo '----';
+        //  echo $id;
+
+        // Get inputs from JS
+         $foodID = $this->input->post('foodID');
+         echo(json_encode($foodID));
+
+        $this->model->foodAdd($foodID);
+        // How does 'create' keep getting called
     }
 
     public function delete($segment = null) {

@@ -114,7 +114,7 @@ class FoodsModel {
             // Have a default food item in the list.
             $newID = $this->listCollection->insertOne([
                 'date' => date('Y-m-d'),
-                'foodIDs' => '62b1d2abf523f74e3509d316',
+                'foodIDs' => array('62b1d2abf523f74e3509d316'),
             ]);
 
             if($newID->getInsertedCount() == 1) {
@@ -138,21 +138,21 @@ class FoodsModel {
     // Add food to list
     function foodAdd(){
         try {
-            // Get inputs from JS
-            $foodID = $this->input->post('foodID');
 
-            // We don't have to parse the list ID because it's in the session cookies
+            // Use the list id from session
             $id = $_SESSION['ListID'];
-            
+
             // get the current food in the list.
-            $listedFoods = $this->getList($id);
-            $result = $this->collection->updateOne(
+            $listedFoods = $this->getList();
+
+            $result = $this->listCollection->updateOne(
                 ['_id' => new \MongoDB\BSON\ObjectId($id)],
                 ['$set' => [
-                    'foodIDs' =>  ''.$listedFoods.' , '.$foodID,
+                    'foodIDs' =>  ''.$listedFoods.' , '.$foodID.'',
                 ]]
             );
 
+            // Make sure record has been changed
             if($result->getModifiedCount()) {
                 return true;
             }

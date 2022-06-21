@@ -39,8 +39,8 @@ $routes->setAutoRoute(false);
 
 // These redirects seem to break everything ;-; by parsing %5 into the url.
 $routes->get('/', 'Home::index');
-
 $routes->get('home', 'Home::index');
+
 // $routes->get('index', 'Home::index');
 
 // Food list
@@ -53,8 +53,8 @@ $routes->match(['get', 'post'], 'listcreate', 'Lists::create');
 // $routes->addRedirect('lists', 'Lists::index');
 
 $routes->get('list/(:segment)', 'Lists::delete/$1');
-
-// $routes->addRedirect('/', 'food');
+$routes->post('foodAdd', 'Lists::foodAdd');
+$routes->addRedirect('index/create', 'food');
 
 
 /*

@@ -22,12 +22,14 @@ var Main = {
 }
 
 var Food = {
+    "XHR":false,
     "init":function(){
         // This is the old way to do XHR. Jquery has this built in..
-        var XHR = new XMLHttpRequest();
-        XHR.onreadystatechange = function() {
-            if (XHR.readyState === 4){
-                document.getElementById('result').innerHTML = XHR.responseText;
+        Food.XHR = new XMLHttpRequest();
+        Food.XHR.onreadystatechange = function() {
+            if (Food.XHR.readyState === 4){
+                // document.getElementById('result').innerHTML = Food.XHR.responseText;
+                console.log(Food.XHR.responseText);
             }
         };
 
@@ -41,13 +43,12 @@ var Food = {
         console.log(this.getAttribute('data-id'));
         // base_url 
         // console.log(d);
-        // 
-
 
         var FD = new FormData();
         FD.append('foodID', this.getAttribute('data-id'));
-        XHR.open('post', d + 'list/foodAdd');
-        XHR.send(FD);
+        // FD.append('listID', listID);
+        Food.XHR.open('POST', d + 'public/foodAdd', true);
+        Food.XHR.send(FD);
     }
 }
 

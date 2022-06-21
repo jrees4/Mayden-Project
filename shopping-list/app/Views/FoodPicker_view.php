@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             <?php foreach($foods as $f):?>
-                <tr data-id="<?=$f['_id']?>" class="af">
+                <tr data-id="<?=$f['_id']?>" class="af" href=''>
                     <td><label for=""><?=$f['foodName']?></label></td>
                     <td><label for=""><?=$f['cost']?></label></td>
                     <td><label for=""><?=$f['description']?></label></td>
@@ -36,6 +36,7 @@
 <?php else: ?>
     <h2>You don't have a basket yet!</h3>
     
+    <div id="result"></div>
     
 <?php endif ?>
 

@@ -14,6 +14,12 @@
 
         <script>
             var d = '<?= site_url();?>';
+            // remove 'index' from base url string.        I had issues with this, normally base_url() is available, but due to helper problems i couldn't get it working... i blame my work for using code igniter 3. ;p
+            d = d.slice(0, -5);
+
+            <?php if(isset($_SESSION['ListID'])):?>
+                var listID = '<?=$_SESSION['ListID'];?>';
+            <?php endif;?>
         </script>
 
 
