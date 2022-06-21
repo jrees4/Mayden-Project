@@ -32,9 +32,6 @@ class Lists extends BaseController
                 'listData' => $listData['foodIDs'],
             ];
     
-        }else{
-            // $this->create();
-            $this->index();
         }
         
         echo view('Header_view', $data);
@@ -58,7 +55,7 @@ class Lists extends BaseController
     }
 
     // this whole thing is broken. aaaaaaaa
-    public function foodAdd(){
+    public function foodAdd($id){
         if ( ! session_id() ) @ session_start();
         
        
@@ -71,18 +68,28 @@ class Lists extends BaseController
         //  $foodID = $this->input->post('foodID');
         //  echo(json_encode($foodID));
 
-        
+
         $model = model(Shopping_model::class);
-        $this->model->foodAdd();
-        // How does 'create' keep getting called
+        $model->foodAdd($id);
+        
+        return redirect()->to('public/food');
+        // $this->index();
     }
 
     public function delete($segment = null) {
-        if (!empty($segment) && $this->request->getMethod() == 'get') {
-            $model = model(Shopping_model::class);
-            $model->deleteFood($segment);
-        }
+        if ( ! session_id() ) @ session_start();
+        
+        session_destroy();
 
-        return redirect()->to('Home');
+
+        if ( ! session_id() ) @ session_start();
+        $this->create();
+
+        // if (!empty($segment) && $this->request->getMethod() == 'get') {
+        //     $model = model(Shopping_model::class);
+        //     $model->deleteFood($segment);
+        // }
+
+        return redirect()->to('public/list');
     }
 }

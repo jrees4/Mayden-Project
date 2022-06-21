@@ -114,7 +114,7 @@ class FoodsModel {
             // Have a default food item in the list.
             $newID = $this->listCollection->insertOne([
                 'date' => date('Y-m-d'),
-                'foodIDs' => array('62b1d2abf523f74e3509d316'),
+                'foodIDs' => (array) array(new \MongoDB\BSON\ObjectId("62b21fe2e2a846eb57038dc1")),
             ]);
 
             if($newID->getInsertedCount() == 1) {
@@ -136,23 +136,23 @@ class FoodsModel {
     }
 
     // Add food to list
-    function foodAdd(){
+    function foodAdd($id){
         try {
 
             // Use the list id from session
-            $id = $_SESSION['ListID'];
+            $listid = $_SESSION['ListID'];
 
             // get the current food in the list.
-            $listedFoods = $this->getList($id);
+            // $listedFoods = $this->getList($listid);
 
-            $foodID = $this->input->post('foodID');
-
-            $listedFoods['FoodIDs'][] = $foodID;
+            // $foodID = $this->input->post('foodID');
+            // $listedFoods['foodIDs'][] = $id;
+            // array_push($listedFoods['foodIDs'], $id);
 
             $result = $this->listCollection->updateOne(
-                ['_id' => new \MongoDB\BSON\ObjectId($id)],
-                ['$set' => [
-                    'foodIDs' =>  $listedFoods,
+                ['_id' => new \MongoDB\BSON\ObjectId($listid)],
+                ['$push' => [
+                    'foodIDs' => $id,
                 ]]
             );
 

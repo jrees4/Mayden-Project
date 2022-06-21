@@ -54,8 +54,14 @@ $routes->match(['get', 'post'], 'listcreate', 'Lists::create');
 // $routes->addRedirect('lists', 'Lists::index');
 
 $routes->get('list/(:segment)', 'Lists::delete/$1');
-$routes->post('foodAdd', 'Lists::foodAdd');
-$routes->post('public/foodAdd', 'Lists::foodAdd');
+// $routes->post('foodAdd', 'Lists::foodAdd');
+// $routes->post('public/foodAdd', 'Lists::foodAdd');
+$routes->get('foodAdd/(:segment)', 'Lists::foodAdd/$1');
+$routes->get('public/foodAdd/(:segment)', 'Lists::foodAdd/$1');
+$routes->get('delete', 'Lists::delete');
+
+$routes->addRedirect('index', 'home');
+$routes->addRedirect('index/food', 'food');
 $routes->addRedirect('index/create', 'food');
 
 

@@ -43,6 +43,7 @@ var Food = {
         console.log(this.getAttribute('data-id'));
         // base_url 
         console.log(d + 'public/foodAdd');
+        
 
         // var FD = new FormData();
         // FD.append('foodID', this.getAttribute('data-id'));
@@ -65,6 +66,14 @@ var Food = {
         //     success: function (response) {
         //         console.log(response);
         //     }
+        // });
+
+        window.location = this.getAttribute('href');
+
+        // jQuery(document).ready(function($) {
+        //     $(".clickable-row").click(function() {
+        //         window.location = $(this).data("href");
+        //     });
         // });
 
         console.log('done');
