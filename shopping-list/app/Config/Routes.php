@@ -46,7 +46,8 @@ $routes->get('home', 'Home::index');
 // Food list
 $routes->get('food', 'Foods::index');
 $routes->match(['get', 'post'], 'create', 'Foods::create');
-// $routes->addRedirect('food', 'Foods::index');
+$routes->get('index/food', 'Foods::index');
+// $routes->addRedirect('index/food', 'Foods::index');
 // Basket/List
 $routes->get('list', 'Lists::index');
 $routes->match(['get', 'post'], 'listcreate', 'Lists::create');

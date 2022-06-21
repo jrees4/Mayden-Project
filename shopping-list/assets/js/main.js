@@ -53,17 +53,19 @@ var Food = {
 
         var foodid = this.getAttribute('data-id')
 
-        $.ajax({
-            method: "post",
-            url: d + 'public/foodAdd',
-            headers: {'X-Requested-With': 'XMLHttpRequest'},
-            data: {
-                'foodID': foodid,
-            },
-            success: function (response) {
-                console.log(response);
-            }
-        });
+        // CDN jquery can't connect.
+        // CSRF could be required. but times runnning out. ;/
+        // $.ajax({
+        //     method: "post",
+        //     url: d + 'public/foodAdd',
+        //     headers: {'X-Requested-With': 'XMLHttpRequest'},
+        //     data: {
+        //         'foodID': foodid,
+        //     },
+        //     success: function (response) {
+        //         console.log(response);
+        //     }
+        // });
 
         console.log('done');
     }

@@ -39,7 +39,8 @@ class Foods extends BaseController
                 $this->request->getPost('description'),
             );
 
-            return redirect()->to('food');
+            // return redirect()->to('index');
+            $this->index();
         } else {
             echo view('Header_view');
             echo view('Create_view', ['title' => 'Add a new food']);
