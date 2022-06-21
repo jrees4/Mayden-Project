@@ -48,6 +48,7 @@
              join us</a> ?</p>
 
         <!-- Button to create an id for the session, to make sure the user can add food. -->
+        <!-- Future note: maybe make this automatic uppon adding a food. If isset -->
     </section>
 
 </div>
